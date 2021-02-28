@@ -1,10 +1,21 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import colors from 'colors'
+import colorsTheme from './config/colors-theme.js'
+import connectDB from './config/db.js'
 import products from './data/products.js'
 
 dotenv.config()
 const PORT = process.env.PORT || 5000
 const MODE = process.env.NODE_ENV
+
+try {
+	colors.setTheme(colorsTheme)
+} catch (err) {
+	console.log(err)
+}
+
+connectDB()
 
 const app = express()
 
@@ -21,4 +32,7 @@ app.get('/api/products/:id', (req, res) => {
 	res.json(product)
 })
 
-app.listen(PORT, console.log(`Server running in ${MODE} mode on port ${PORT}`))
+app.listen(
+	PORT,
+	console.log(`Server running in ${MODE} mode on port ${PORT}`.message)
+)
