@@ -9,12 +9,6 @@ dotenv.config()
 const PORT = process.env.PORT || 5000
 const MODE = process.env.NODE_ENV
 
-try {
-	colors.setTheme(colorsTheme)
-} catch (err) {
-	console.log(err)
-}
-
 connectDB()
 
 const app = express()
@@ -34,5 +28,5 @@ app.get('/api/products/:id', (req, res) => {
 
 app.listen(
 	PORT,
-	console.log(`Server running in ${MODE} mode on port ${PORT}`.message)
+	console.log(`Server running in ${MODE} mode on port ${PORT}`.yellow.bold)
 )
